@@ -1,4 +1,6 @@
 public class Matrix {
+
+    //region basic methods
     public static int getColumnsCount(double[][] matrix){
         return matrix[0].length;
     }
@@ -19,6 +21,20 @@ public static double[][]copyMatrix(double[][] matrix) {
 
         return export;
 }
+
+    public static void printMatrix(double[][] matrix) {
+        for (int row = 0; row < getRowsCount(matrix) ; row++) {
+            for (int col = 0; col < getColumnsCount(matrix) ; col++) {
+                System.out.print(matrix[row][col] + " ");
+            }
+            System.out.println();
+        }
+
+
+    }
+//endregion
+
+//region matrix matrix
 
     public static double[][]multiply(double[][] a ,double[][] b){
 
@@ -61,21 +77,6 @@ public static double[][]copyMatrix(double[][] matrix) {
         return export;
     }
 
-    public static double[][]multiply( double[][] matrix,double number ){
-
-
-      double[][] export = copyMatrix(matrix) ;
-
-        for (int row = 0; row < getRowsCount(matrix) ; row++) {
-            for (int col = 0; col < getColumnsCount(matrix) ; col++) {
-
-                export[row][col] = matrix[row][col] * number;
-
-            }
-        }
-        return export;
-    }
-
     public static double[][]subtract(double[][] a ,double[][] b){
 
 
@@ -95,16 +96,51 @@ public static double[][]copyMatrix(double[][] matrix) {
         return export;
     }
 
-    public static void printMatrix(double[][] matrix) {
-        for (int row = 0; row < getRowsCount(matrix) ; row++) {
-            for (int col = 0; col < getColumnsCount(matrix) ; col++) {
-                System.out.print(matrix[row][col] + " ");
-            }
-            System.out.println();
+    //endregion
+    //region matrix scalar
+
+    public static double[][] divide(double[][] matrix, double number) {
+
+        if (number == 0) {
+            throw new ArithmeticException("Division by zero");
         }
 
+        double[][] export = copyMatrix(matrix);
 
+        for (int row = 0; row < getRowsCount(matrix); row++) {
+            for (int col = 0; col < getColumnsCount(matrix); col++) {
+                export[row][col] = matrix[row][col] / number;
+            }
+        }
+
+        return export;
     }
+
+
+
+    public static double[][]multiply( double[][] matrix,double number ){
+
+
+      double[][] export = copyMatrix(matrix) ;
+
+        for (int row = 0; row < getRowsCount(matrix) ; row++) {
+            for (int col = 0; col < getColumnsCount(matrix) ; col++) {
+
+                export[row][col] = matrix[row][col] * number;
+
+            }
+        }
+        return export;
+    }
+
+
+
+    //endregion
+    //region matrix vector
+
+
+    //endregion
+
 
 
     public static double[][] transposition (double[][] matrix){
@@ -123,9 +159,9 @@ public static double[][]copyMatrix(double[][] matrix) {
 
 
     }
-    public static double[][] inversion(double[][] matrix){return matrix;}
-    public static double determinant (double[][] matrix){return 0;}
 
+    public static double determinant (double[][] matrix){return 0;}
+    public static double[][] inversion(double[][] matrix){return matrix;}
 
 
 }
