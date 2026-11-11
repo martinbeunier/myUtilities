@@ -124,6 +124,7 @@ public static double[][]copyMatrix(double[][] matrix) {
 
     }
     public static double[][] inversion(double[][] matrix){return matrix;}
+    public static double determinant (double[][] matrix){return 0;}
 
 
 
