@@ -159,8 +159,39 @@ public static double[][]copyMatrix(double[][] matrix) {
 
 
     }
+    //region determinant parts
+    private static double  determinant22(double[][] matrix){
+        return matrix[0][0] * matrix[1][1] - matrix[1][0] * matrix[0][1];
+    }
 
-    public static double determinant (double[][] matrix){return 0;}
+    private static double  determinant33(double[][] matrix){
+        return  matrix[0][0] * matrix[1][1] * matrix[2][2] +
+                matrix[1][0] * matrix[2][1] * matrix[0][2] +
+                matrix[2][0] * matrix[0][1] * matrix[1][2] -
+                matrix[0][0] * matrix[1][2] * matrix[2][1] -
+                matrix[0][1] * matrix[1][0] * matrix[2][2] -
+                matrix[0][2] * matrix[1][1] * matrix[2][0] ;
+    }
+
+    public static double determinant (double[][] matrix){
+
+        if (getColumnsCount(matrix) != getRowsCount(matrix)) {
+            throw new IllegalArgumentException("Bad sizes of matrix");
+        }
+        if(getColumnsCount(matrix) == 2){return determinant22(matrix);}
+        if(getColumnsCount(matrix) == 3){return determinant33(matrix);}
+        if(getColumnsCount(matrix) == 4){
+            System.out.println("i do no");;return 0;}
+
+
+
+        return 0;
+    }
+    //endregion
+
+
+    //endregion
+
     public static double[][] inversion(double[][] matrix){return matrix;}
 
 
