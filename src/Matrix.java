@@ -7,6 +7,12 @@ public class Matrix {
     public static int getRowsCount(double[][] matrix){
         return matrix.length;
     }
+    public static int getColumnsCount(int[][] matrix){
+        return matrix[0].length;
+    }
+    public static int getRowsCount(int[][] matrix){
+        return matrix.length;
+    }
 
 public static double[][]copyMatrix(double[][] matrix) {
     double[][] export = new double[getRowsCount(matrix)][getColumnsCount(matrix)]  ;
@@ -36,6 +42,13 @@ public static double[][]copyMatrix(double[][] matrix) {
 
 //region matrix matrix
 
+    /**
+     * A * B
+     *
+     * @param a
+     * @param b
+     * @return
+     */
     public static double[][]multiply(double[][] a ,double[][] b){
 
         if (getColumnsCount(a) != getRowsCount(b)) {
@@ -138,27 +151,67 @@ public static double[][]copyMatrix(double[][] matrix) {
     //endregion
     //region matrix vector
 
+    /**
+     * v * A
+     *
+     * @param a
+     * @param v
+     * @return
+     */
+    public static double[][]multiplyVA(double[][] a ,double[] v){
+
+        if (v.length != a.length) {
+            throw new IllegalArgumentException("Bad sizes of matrix and vector");
+        }
+
+
+
+        double[][] newV = new double[1][v.length];
+            for (int i = 0; i < v.length; i++) {
+                newV[0][i] = v[i]; //cols
+            }
+
+
+
+
+
+
+        return multiply(newV,a);
+    }
+
+    /**
+     * A * v
+     *
+     * @param a
+     * @param v
+     * @return
+     */
+    public static double[][]multiplyAV(double[][] a ,double[] v){
+
+        if (v.length != a[0].length) {
+            throw new IllegalArgumentException("Bad sizes of matrix and vector");
+        }
+
+
+
+        double[][] newV = new double[v.length][1];
+        for (int i = 0; i < v.length; i++) {
+            newV[i][0] = v[i]; //rows
+        }
+
+
+
+
+
+
+        return multiply(a,newV);
+    }
 
     //endregion
 
 
 
-    public static double[][] transposition (double[][] matrix){
 
-        double[][] export = new double[getColumnsCount(matrix)][  getRowsCount(matrix)]  ;
-
-        for (int row = 0; row < getRowsCount(matrix) ; row++) {
-            for (int col = 0; col < getColumnsCount(matrix) ; col++) {
-              export[col][row] =  matrix[row][col];
-            }
-
-        }
-
-        return export;
-
-
-
-    }
     //region determinant parts
     private static double  determinant22(double[][] matrix){
         return matrix[0][0] * matrix[1][1] - matrix[1][0] * matrix[0][1];
@@ -181,6 +234,10 @@ public static double[][]copyMatrix(double[][] matrix) {
         if(getColumnsCount(matrix) == 2){return determinant22(matrix);}
         if(getColumnsCount(matrix) == 3){return determinant33(matrix);}
         if(getColumnsCount(matrix) == 4){
+
+            System.out.println("i do no");;return 0;}
+
+        if(getColumnsCount(matrix) == 5){
             System.out.println("i do no");;return 0;}
 
 
@@ -190,9 +247,62 @@ public static double[][]copyMatrix(double[][] matrix) {
     //endregion
 
 
-    //endregion
 
     public static double[][] inversion(double[][] matrix){return matrix;}
+
+    public static double[][] transposition (double[][] matrix){
+
+        double[][] export = new double[getColumnsCount(matrix)][  getRowsCount(matrix)]  ;
+
+        for (int row = 0; row < getRowsCount(matrix) ; row++) {
+            for (int col = 0; col < getColumnsCount(matrix) ; col++) {
+                export[col][row] =  matrix[row][col];
+            }
+
+        }
+
+        return export;
+
+
+
+    }
+    public int[][] transposition(int[][] matrix) {
+        int[][] export = new int[getColumnsCount(matrix)][  getRowsCount(matrix)]  ;
+
+        for (int row = 0; row < getRowsCount(matrix) ; row++) {
+            for (int col = 0; col < getColumnsCount(matrix) ; col++) {
+                export[col][row] =  matrix[row][col];
+            }
+
+        }
+
+        return export;
+    }
+
+
+    public static double[][] power(double[][] a, int n) {
+        if (a.length != a[0].length || n < 0) {
+            throw new IllegalArgumentException();
+        }
+
+        double[][] result = copyMatrix(a);
+
+        for (int i = 1; i < n; i++) {
+            result = multiply(result, a);
+        }
+
+        return result;
+    }
+    public static double[][] identityMatrix(int size){
+        double[][] export = new double[size][size]  ;
+        for (int i = 0; i < size; i++) {
+            export[i][i] = 1;
+        }
+        return export;
+    }
+
+
+
 
 
 }

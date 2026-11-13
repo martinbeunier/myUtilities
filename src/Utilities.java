@@ -19,7 +19,7 @@ public class Utilities {
         }
         return biggestNumber;
     }
-    public static int[] copyInts(int[] input){
+    public static int[] copyArray(int[] input){
         int[] output = new int[input.length];
 
         for(int i = 0;i <input.length ;i++){
@@ -28,6 +28,18 @@ public class Utilities {
 
         return output;
     }
+
+    public static void printArray(int[] input){
+        int[] output = new int[input.length];
+
+        for(int i = 0;i <input.length ;i++){
+            System.out.println(input[i]);
+        }
+
+
+    }
+
+
 
 
 
@@ -86,4 +98,51 @@ public class Utilities {
         // System.out.println(index);
         return index;
     }
+    public static int search(int[] nums) {return 0;} //(binary)
+
+    public static int factorial(int n){
+        int sum = 1;
+
+        if (n < 0) {
+            throw new IllegalArgumentException("factorial is not defined on (-∞ ,0)");
+        }
+
+        if (n == 0) {
+            return 1;
+        }
+        for (int i = 1; i <= n; i++) {
+       sum = sum * i;
+        }
+        return sum;
+    }
+    public static int sum(int[] nums){
+        int sum = 0;
+        for (int i = 0; i < nums.length ; i++) {
+            sum = sum + nums[i];
+        }
+
+
+        return sum;
+    }
+    public static double sum(double[] nums){
+        double sum = 0;
+        for (int i = 0; i < nums.length ; i++) {
+            sum = sum + nums[i];
+        }
+
+
+        return sum;
+    }
+
+    public static double average(int[] nums){
+
+        return sum(nums)/(double)nums.length;
+    }
+    public static double average(double[] nums){
+
+        return sum(nums)/nums.length;
+    }
+
 }
+//sorty
+//remove duplicates

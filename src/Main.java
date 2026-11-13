@@ -6,6 +6,7 @@ public class Main{
         double[][] mask2 = { {1, 2, 3}, {4, 5, 6},{7, 8, 9} };//
         double[][] mask3 = { {1, 2}, {3, 4}};//
 
+
         System.out.println(Matrix.getColumnsCount(mask)+" "+Matrix.getRowsCount(mask));
         Matrix.printMatrix(myNumbers);
         System.out.println();
@@ -26,6 +27,23 @@ public class Main{
         System.out.println(Matrix.determinant(myNumbers));
 
         System.out.println(Matrix.determinant(mask3));
+
+        System.out.println();
+
+        double[] vector = {1,2,3};
+        double[] vector2 = {1,2};
+        //{1, 2}, {3, 4},{5,6}};
+        Matrix.printMatrix(Matrix.multiplyVA(mask,vector));
+       // Matrix.printMatrix(Matrix.multiplyAV(mask,vector));
+       // Matrix.printMatrix(Matrix.multiplyVA(mask,vector2));
+        Matrix.printMatrix(Matrix.multiplyAV(mask,vector2));
+
+        System.out.println(Utilities.factorial(5));
+        System.out.println(Useless.fibonaci(10));
+
+     Matrix.printMatrix(Matrix.power(myNumbers,300));
+
+        System.out.println(   Math.pow(2.0,Double.POSITIVE_INFINITY) );
     }
 
 }
