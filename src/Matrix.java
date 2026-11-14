@@ -232,14 +232,17 @@ public static double[][]copyMatrix(double[][] matrix) {
         if (getColumnsCount(matrix) != getRowsCount(matrix)) {
             throw new IllegalArgumentException("Bad sizes of matrix");
         }
+        if (getColumnsCount(matrix)  == 1) {
+            return matrix[0][0];
+        }
         if(getColumnsCount(matrix) == 2){return determinant22(matrix);}
         if(getColumnsCount(matrix) == 3){return determinant33(matrix);}
-        if(getColumnsCount(matrix) == 4){
+        if(getColumnsCount(matrix) >= 4){
 
             double det =0;
-            for (int j = 0; j < 4; j++) {
+            for (int j = 0; j < getColumnsCount(matrix); j++) {
 
-                double[][] newV = new double[3][3];
+                double[][] newV = new double[getColumnsCount(matrix)-1][getColumnsCount(matrix)-1];
 
 
                     for (int row = 0; row < getRowsCount(newV) ; row++) {
@@ -260,16 +263,16 @@ public static double[][]copyMatrix(double[][] matrix) {
 
                         }
                     }
-                printMatrix(newV);
+              //  printMatrix(newV);
 
 
 
 
 
                 if (j % 2 == 0) {
-                    det = det + matrix[0][j] * determinant33(newV);
+                    det = det + matrix[0][j] * determinant(newV);
                 } else {
-                    det = det - matrix[0][j] * determinant33(newV);
+                    det = det - matrix[0][j] * determinant(newV);
                 }
 
             }
@@ -279,8 +282,7 @@ public static double[][]copyMatrix(double[][] matrix) {
            return det;
         }
 
-        if(getColumnsCount(matrix) == 5){
-            System.out.println("i do no");;return 0;}
+
 
 
 

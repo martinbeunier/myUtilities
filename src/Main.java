@@ -41,9 +41,21 @@ public class Main{
         System.out.println(Utilities.factorial(5));
         System.out.println(Useless.fibonaci(10));
 
-        double[][] myNumbers2 = { {1, 2, 3,4} ,{5,6,7,8}, {9,10,11,12} ,{13,14,15,16}};
-
+      //  double[][] myNumbers2 = { {1, 2, 3,4} ,{5,6,7,8}, {9,10,11,12} ,{13,14,15,16}};
+        double[][] myNumbers2 = {
+                {2, 1, 3, 0},                {1, 3, 0, 2},                {0, 2, 4, 1},                {3, 0, 1, 5}
+        };
         System.out.println(Matrix.determinant(myNumbers2));
+
+        double[][] myNumbers3 = {
+                { 2,  1,  3,  0,  4},
+                { 1,  3,  0,  2,  1},
+                { 0,  2,  4,  1,  3},
+                { 3,  0,  1,  5,  2},
+                { 1,  4,  2,  3,  6}
+        };
+       //
+        System.out.println(Matrix.determinant(myNumbers3));
     }
 
 }
