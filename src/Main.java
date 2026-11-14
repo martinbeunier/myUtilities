@@ -41,9 +41,9 @@ public class Main{
         System.out.println(Utilities.factorial(5));
         System.out.println(Useless.fibonaci(10));
 
-     Matrix.printMatrix(Matrix.power(myNumbers,300));
+        double[][] myNumbers2 = { {1, 2, 3,4} ,{5,6,7,8}, {9,10,11,12} ,{13,14,15,16}};
 
-        System.out.println(   Math.pow(2.0,Double.POSITIVE_INFINITY) );
+        System.out.println(Matrix.determinant(myNumbers2));
     }
 
 }

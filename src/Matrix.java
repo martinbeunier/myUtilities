@@ -36,6 +36,7 @@ public static double[][]copyMatrix(double[][] matrix) {
             System.out.println();
         }
 
+        System.out.println();
 
     }
 //endregion
@@ -235,7 +236,48 @@ public static double[][]copyMatrix(double[][] matrix) {
         if(getColumnsCount(matrix) == 3){return determinant33(matrix);}
         if(getColumnsCount(matrix) == 4){
 
-            System.out.println("i do no");;return 0;}
+            double det =0;
+            for (int j = 0; j < 4; j++) {
+
+                double[][] newV = new double[3][3];
+
+
+                    for (int row = 0; row < getRowsCount(newV) ; row++) {
+                        for (int col = 0; col < getColumnsCount(newV) ; col++) {
+                            int dRow =1;
+                            int dCol =0;
+
+
+
+
+
+                            if (j <= col) {
+                                dCol = 1;
+                            }
+
+
+                            newV[row][col] = matrix[row+dRow][col+dCol];
+
+                        }
+                    }
+                printMatrix(newV);
+
+
+
+
+
+                if (j % 2 == 0) {
+                    det = det + matrix[0][j] * determinant33(newV);
+                } else {
+                    det = det - matrix[0][j] * determinant33(newV);
+                }
+
+            }
+
+
+
+           return det;
+        }
 
         if(getColumnsCount(matrix) == 5){
             System.out.println("i do no");;return 0;}
